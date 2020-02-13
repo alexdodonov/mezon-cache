@@ -1,0 +1,98 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "cc973639ef378d9dc900ca3136405947",
+    "packages": [
+        {
+            "name": "mezon/functional",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-functional.git",
+                "reference": "9f92bb4084d140e7d34d208e6fdc7e370c292d37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-functional/zipball/9f92bb4084d140e7d34d208e6fdc7e370c292d37",
+                "reference": "9f92bb4084d140e7d34d208e6fdc7e370c292d37",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\Functional\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Small and fast framework for functional programming",
+            "homepage": "https://github.com/alexdodonov/mezon-functional",
+            "time": "2020-02-13T21:26:22+00:00"
+        },
+        {
+            "name": "mezon/singleton",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexdodonov/mezon-singleton.git",
+                "reference": "e7229d1a24f4914c09076f2c435d97212015ea97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexdodonov/mezon-singleton/zipball/e7229d1a24f4914c09076f2c435d97212015ea97",
+                "reference": "e7229d1a24f4914c09076f2c435d97212015ea97",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mezon\\Singleton\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dodonov Alexey",
+                    "email": "alexey@dodonov.pro",
+                    "homepage": "http://gdzone.ru",
+                    "role": "Founder"
+                }
+            ],
+            "description": "Simple singleton",
+            "homepage": "https://github.com/alexdodonov/mezon-singleton",
+            "time": "2020-02-13T21:35:55+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.2.0"
+    },
+    "platform-dev": []
+}
