@@ -54,7 +54,7 @@ class Cache extends Singleton
      */
     protected function fileGetContents(string $filePath): string
     {
-        return (@file_get_contents($filePath));
+        return @file_get_contents($filePath);
     }
 
     /**
@@ -65,11 +65,7 @@ class Cache extends Singleton
         if ($this->data === null) {
             $this->data = $this->fileGetContents($this->cachePath . date('YmdH') . '.cache');
 
-            if ($this->data === false) {
-                $this->data = [];
-            } else {
-                $this->data = $this->data == '' ? [] : json_decode($this->data, true);
-            }
+            $this->data = $this->data === '' ? [] : json_decode($this->data, true);
         }
     }
 
@@ -136,6 +132,7 @@ class Cache extends Singleton
      *
      * @param string $path
      * @param string $content
+     * @codeCoverageIgnore
      */
     protected function filePutContents(string $path, string $content): void
     {

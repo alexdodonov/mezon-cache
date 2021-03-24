@@ -83,21 +83,29 @@ class CacheUnitTest extends TestCase
     public function testFlush(): void
     {
         // setup
-        $cache = $this->getMockBuilder(Cache::class)
-            ->setMethods([
-            'filePutContents',
-            'fileGetContents'
-        ])
-            ->disableOriginalClone()
-            ->getMock();
-
-        // assertions
-        $cache->expects($this->once())
-            ->method('filePutContents');
-        $cache->method('fileGetContents')->willReturn('{"key":1}');
+        $cache = CacheMock::getInstance();
 
         // test body
         $cache->set('key', 'value');
         $cache->flush();
+
+        // assertions
+        $this->assertEquals('value', $cache->get('key'));
+    }
+
+    /**
+     * Testing invalid file read
+     */
+    public function testInvalidDataRead(): void
+    {
+        // setup
+        $cache = CacheMock::getInstance();
+        $cache->content = false;
+
+        // test body
+        $cache->exists('key');
+
+        // assertions
+        $this->addToAssertionCount(1);
     }
 }
