@@ -1,6 +1,10 @@
 <?php
 namespace Mezon\Cache;
 
+use Mezon\Singleton\Singleton;
+use Mezon\Functional\Functional;
+use Mezon\Functional\Fetcher;
+
 /**
  * Class Cache
  *
@@ -18,7 +22,7 @@ namespace Mezon\Cache;
  *
  * @author Dodonov A.A.
  */
-class Cache extends \Mezon\Singleton\Singleton
+class Cache extends Singleton
 {
 
     /**
@@ -27,6 +31,11 @@ class Cache extends \Mezon\Singleton\Singleton
      * @var string
      */
     protected $data = null;
+
+    // TODO allow to setup $cachePath
+    // TODO allow to setup $cacheFileName
+    // TODO allow to store timestamp of additing data to cache
+    // TODO implement PSR interfaces for cache classes
 
     /**
      * Cache file path
@@ -76,7 +85,7 @@ class Cache extends \Mezon\Singleton\Singleton
     {
         $this->init();
 
-        \Mezon\Functional\Functional::setField(
+        Functional::setField(
             $this->data,
             $key,
             [
@@ -110,13 +119,13 @@ class Cache extends \Mezon\Singleton\Singleton
     {
         $this->init();
 
-        if (\Mezon\Functional\Functional::fieldExists($this->data, $key, false) === false) {
+        if (Functional::fieldExists($this->data, $key, false) === false) {
             throw (new \Exception("The key $key does not exist"));
         }
 
-        $keyValue = \Mezon\Functional\Functional::getField($this->data, $key, false);
+        $keyValue = Fetcher::getField($this->data, $key, false);
 
-        $result = \Mezon\Functional\Functional::getField($keyValue, 'data', false);
+        $result = Fetcher::getField($keyValue, 'data', false);
 
         // preventing external code from writing directly to cache
         return json_decode(json_encode($result));

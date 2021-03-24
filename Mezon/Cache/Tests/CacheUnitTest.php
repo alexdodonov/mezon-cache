@@ -1,6 +1,10 @@
 <?php
+namespace Mezon\Cache\Tests;
 
-class CacheUnitTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+use Mezon\Cache\Cache;
+
+class CacheUnitTest extends TestCase
 {
 
     /**
@@ -8,7 +12,7 @@ class CacheUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testAdditingDataToCache()
     {
-        $cache = $this->getMockBuilder(\Mezon\Cache\Cache::class)
+        $cache = $this->getMockBuilder(Cache::class)
             ->setMethods([
             'flush'
         ])
@@ -31,12 +35,12 @@ class CacheUnitTest extends \PHPUnit\Framework\TestCase
      */
     public function testExistence()
     {
-        $cache = \Mezon\Cache\Cache::getInstance();
+        $cache = Cache::getInstance();
 
         $cache->set('key', 'test');
 
-        $this->assertTrue($cache->exists('key'), 'Existence check failed');
-        $this->assertFalse($cache->exists('unexisting'), 'Existence check failed');
+        $this->assertTrue($cache->exists('key'));
+        $this->assertFalse($cache->exists('unexisting'));
     }
 
     /**
@@ -45,7 +49,7 @@ class CacheUnitTest extends \PHPUnit\Framework\TestCase
     public function testExistenceObject(): void
     {
         // setup
-        $cache = $this->getMockBuilder(\Mezon\Cache\Cache::class)
+        $cache = $this->getMockBuilder(Cache::class)
             ->setMethods([
             'fileGetContents'
         ])
@@ -55,7 +59,7 @@ class CacheUnitTest extends \PHPUnit\Framework\TestCase
         $cache->method('fileGetContents')->willReturn('{"key":1}');
 
         // test body and assertions
-        $this->assertTrue($cache->exists('key'), 'Existence check failed');
+        $this->assertTrue($cache->exists('key'));
     }
 
     /**
@@ -64,7 +68,7 @@ class CacheUnitTest extends \PHPUnit\Framework\TestCase
     public function testGetUnexisting(): void
     {
         // setup
-        $cache = \Mezon\Cache\Cache::getInstance();
+        $cache = Cache::getInstance();
 
         // assertions
         $this->expectException(\Exception::class);
@@ -79,7 +83,7 @@ class CacheUnitTest extends \PHPUnit\Framework\TestCase
     public function testFlush(): void
     {
         // setup
-        $cache = $this->getMockBuilder(\Mezon\Cache\Cache::class)
+        $cache = $this->getMockBuilder(Cache::class)
             ->setMethods([
             'filePutContents',
             'fileGetContents'
